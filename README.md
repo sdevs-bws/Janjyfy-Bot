@@ -21,11 +21,11 @@
 ## 🛠 Development Server
 
 ```bash
-npm install --s --f && npm start dev
+npm install && npm start dev
 ```
 ## 🛠 Production Server
 ```bash
-npm install --s --f && npm run build && npm run start
+npm install && npm run build && npm run start
 ```
 
 ## Learn More
@@ -40,3 +40,10 @@ You can check out [the Discord.js GitHub repository](https://github.com/discordj
 
 ## ⭐ Star
  - Don't forget to star this repo for support :)
+
+
+## 💫 Credits
+
+```bash
+Developed with ❤️ by Stoneclane Development
+```
