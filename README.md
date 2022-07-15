@@ -15,7 +15,6 @@
 [![Run on Repl.it](https://repl.it/badge/github/Stoneclane-Development/Stoneclane-Development-Bot)](https://repl.it/github/Stoneclane-Development/Stoneclane-Development-Bot)
 
 
-
 ## Getting Started
 
 ## 🛠 Development Server
