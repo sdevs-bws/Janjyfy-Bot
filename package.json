@@ -1,6 +1,6 @@
 {
     "name": "Stoneclane Development Bot",
-    "version": "8.0.1",
+    "version": "8.1.1",
     "description": "Stoneclane Development's bot written in discord.js",
     "main": "stoneclane.index.js",
     "scripts": {
