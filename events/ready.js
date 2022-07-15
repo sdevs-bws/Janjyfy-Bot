@@ -1,4 +1,4 @@
-const register = require('../utils/slashsync.js');
+const register = require('../utils/stoneclane.slashsync');
 module.exports = async (client) => {
   await register(client, client.register_arr.map((command) => ({
     name: command.name,
