@@ -6,7 +6,6 @@ module.exports.run = async (client, message, args) => {
   let projects = new Discord.MessageEmbed()
     .setTitle("Stoneclane Development's Projects")
     .setColor('#000000')	
-    .setTimestamp()
     .addField("GiveAways", `https://giveaways-bot.com`, true)
     .addField("TrestHost", `https://tresthost.com`, true)
     .addField("Zerion (Soon!)", `https://zerion.codes`, true)

@@ -8,29 +8,16 @@ client.config = config;
 /* Load all events (discord based) */
 
 
-fs.readdir("./events/discord", (_err, files) => {
+fs.readdir("./events/", (_err, files) => {
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
-    const event = require(`./events/discord/${file}`);
+    const event = require(`./events/${file}`);
     let eventName = file.split(".")[0];
     console.log(`[Event]   ✅  Loaded: ${eventName}`);
     client.on(eventName, event.bind(null, client));
-    delete require.cache[require.resolve(`./events/discord/${file}`)];
+    delete require.cache[require.resolve(`./events/${file}`)];
   });
 });
-
-/* Load all events (giveaways based) */
-
-
-fs.readdir("./events/giveaways", (_err, files) => {
-  files.forEach((file) => {
-    if (!file.endsWith(".js")) return;
-    const event = require(`./events/giveaways/${file}`);
-    let eventName = file.split(".")[0];
-    console.log(`[Event]    ✅ Loaded: ${eventName}`);
-    client.giveawaysManager.on(eventName, (...file) => event.execute(...file, client)), delete require.cache[require.resolve(`./events/${file}`)];
-  })
-})
 
 // Let commands be a new collection ( message commands )
 client.commands = new Discord.Collection();
