@@ -13,25 +13,25 @@ module.exports = {
     .setFooter({ text: config.footer });
 
     const GiveAways = new MessageEmbed()
-    .setTitle(project_config.project_giveaways_title)
-    .setColor(project_config.project_giveaways_color)
-    .setDescription(project_config.project_giveaways_description)
-    .setImage(project_config.project_giveaways_image)
-    .setFooter({ text: project_config.project_giveaways_footer});
+    .setTitle(project_config.GiveAways.title)
+    .setColor(project_config.GiveAways.color)
+    .setDescription(project_config.GiveAways.description)
+    .setImage(project_config.GiveAways.image)
+    .setFooter({ text: project_config.GiveAways.footer});
 
   const TrestHost = new MessageEmbed()
-    .setTitle(project_config.project_tresthost_title)
-    .setColor(project_config.project_tresthost_color)
-    .setDescription(project_config.project_tresthost_description)
-    .setImage(project_config.project_tresthost_image)
-    .setFooter({ text: project_config.project_tresthost_footer});
+    .setTitle(project_config.TrestHost.title)
+    .setColor(project_config.TrestHost.color)
+    .setDescription(project_config.TrestHost.description)
+    .setImage(project_config.TrestHost.image)
+    .setFooter({ text: project_config.TrestHost.footer});
 
     const Stoneclane = new MessageEmbed()
-    .setTitle(project_config.project_stoneclane_title)
-    .setColor(project_config.project_stoneclane_color)
-    .setDescription(project_config.project_stoneclane_description)
-    .setImage(project_config.project_stoneclane_image)
-    .setFooter({ text: project_config.project_stoneclane_footer});
+    .setTitle(project_config.Stoneclane.title)
+    .setColor(project_config.Stoneclane.color)
+    .setDescription(project_config.Stoneclane.description)
+    .setImage(project_config.Stoneclane.image)
+    .setFooter({ text: project_config.Stoneclane.footer});
 
 
     const components = (state) => [
@@ -44,19 +44,19 @@ module.exports = {
             label: `GiveAways`,
             value: `GiveAways`,
             description: `View more informations based to GiveAways!`,
-            emoji: project_config.project_giveaways_emoji,
+            emoji: project_config.GiveAways.emoji,
         },
         {
             label: `TrestHost`,
             value: `TrestHost`,
             description: `View more informations based to TrestHost!`,
-            emoji: project_config.project_tresthost_emoji,
+            emoji: project_config.TrestHost.emoji,
         },
         {
           label: `Stoneclane.xyz`,
           value: `Stoneclane.xyz`,
           description: `View more informations based to Stoneclane.xyz!`,
-          emoji: project_config.project_stoneclane_emoji,
+          emoji: project_config.Stoneclane.emoji,
         }
     ])
 ),
