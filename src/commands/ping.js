@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const config = require('../config.json');
+const config = require('../config/stoneclane.config.js');
 
 module.exports.run = async (client, message, args) => {
   let m = await message.reply("Sending request to the websocket...")
@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
     .setTimestamp()
     .addField("Latency", `${m.createdTimestamp - message.createdTimestamp}ms`, true)
     .addField("API Latency", `${Math.round(client.ws.ping)}ms`, true)
-    .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
+    .setFooter(`${config.footer}`);
      m.delete()
   message.reply({ content: " ", embeds: [pong] })
 }

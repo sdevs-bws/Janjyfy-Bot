@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js")
+const config = require("../config/stoneclane.config.js")
 
 module.exports = {
     name: 'ping',
@@ -10,7 +11,7 @@ module.exports = {
 			.addField('**Latency**', `\`${Date.now() - interaction.createdTimestamp}ms\``)
 			.addField('**API Latency**', `\`${Math.round(client.ws.ping)}ms\``)
 			.setTimestamp()
-			.setFooter(`${interaction.user.username}`, interaction.user.avatarURL());
+			.setFooter(`${config.footer}`);
         interaction.reply({
           embeds: [pembed]
         });
