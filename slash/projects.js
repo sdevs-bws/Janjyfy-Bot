@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const config = require('../config/stoneclane.config.json')
+const config = require('../config/stoneclane.config.js')
 
 module.exports = {
     name: 'projects',

@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client({ intents: 32767 });
 const fs = require("fs");
-const config = require("./config/stoneclane.config.json");
+const config = require("./config/stoneclane.config.js");
 client.config = config;
 
 
