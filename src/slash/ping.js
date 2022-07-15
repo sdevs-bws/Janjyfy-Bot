@@ -11,7 +11,7 @@ module.exports = {
 			.addField('**Latency**', `\`${Date.now() - interaction.createdTimestamp}ms\``)
 			.addField('**API Latency**', `\`${Math.round(client.ws.ping)}ms\``)
 			.setTimestamp()
-			.setFooter(`${config.footer}`);
+			.setFooter({ text: config.footer });
         interaction.reply({
           embeds: [pembed]
         });

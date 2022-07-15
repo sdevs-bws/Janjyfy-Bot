@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
     .addField("Viridian.ml", `https://viridian.ml`, true)
     .addField("Praxive (Soon!)", `https://praxive.sdevs.org`, true)
     .addField("Stoneclane Studios", `https://discord.gg/5t6S5T53Kd`, true)
-    .setFooter(`${config.footer}`);
+    .setFooter({ text: config.footer });
      m.delete()
   message.reply({ content: " ", embeds: [projects] })
 }
