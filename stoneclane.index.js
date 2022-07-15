@@ -19,22 +19,6 @@ fs.readdir("./src/events/", (_err, files) => {
   });
 });
 
-// Let commands be a new collection ( message commands )
-client.commands = new Discord.Collection();
-/* Load all commands */
-fs.readdir("./src/commands/", (_err, files) => {
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./src/commands/${file}`);
-    let commandName = file.split(".")[0];
-    client.commands.set(commandName, {
-      name: commandName,
-      ...props
-    });
-    console.log(`[Command] ✅  Loaded: ${commandName}`);
-  });
-});
-
 // let interactions be a new collection ( slash commands  )
 client.interactions = new Discord.Collection();
 // creating an empty array for registering slash commands
