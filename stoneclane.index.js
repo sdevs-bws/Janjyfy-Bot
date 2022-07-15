@@ -24,10 +24,10 @@ client.interactions = new Discord.Collection();
 // creating an empty array for registering slash commands
 client.register_arr = []
 /* Load all slash commands */
-fs.readdir("./src/slash/", (_err, files) => {
+fs.readdir("./src/slash_commands/", (_err, files) => {
   files.forEach(file => {
     if (!file.endsWith(".js")) return;
-    let props = require(`./src/slash/${file}`);
+    let props = require(`./src/slash_commands/${file}`);
     let commandName = file.split(".")[0];
     client.interactions.set(commandName, {
       name: commandName,
