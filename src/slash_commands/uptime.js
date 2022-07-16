@@ -13,7 +13,7 @@ module.exports = {
    const timestamp = date.getTime() - Math.floor(client.uptime);
   let uptime = new Discord.MessageEmbed()
     .setTitle("<:pingms:962312529005137990> Client's Uptime")
-    .setColor('#2F3136')	
+    .setColor('#000000')	
     .setTimestamp()
     .addField(`⏱️ Uptime`, `\`\`\`${duration}\`\`\``)
     .addField(`🚀 Date Launched`, `<t:${moment(timestamp).unix()}> (<t:${moment(timestamp).unix()}:R>)`)
