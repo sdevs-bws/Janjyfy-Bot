@@ -1,0 +1,313 @@
+{
+    "RowActive": {
+      "components": [
+        {
+          "custom_id": "{ID}",
+          "disabled": false,
+          "label": "YES",
+          "style": 3,
+          "type": 2
+        },
+        {
+          "custom_id": "{ID2}",
+          "disabled": false,
+          "label": "NO",
+          "style": 4,
+          "type": 2
+        }
+      ],
+      "type": 1
+    },
+    "RowDisable": {
+      "components": [
+        {
+          "custom_id": "DoNothingy",
+          "disabled": true,
+          "label": "YES",
+          "style": 3,
+          "type": 2
+        },
+        {
+          "custom_id": "DoNothing",
+          "disabled": true,
+          "label": "NO",
+          "style": 4,
+          "type": 2
+        }
+      ],
+      "type": 1
+    },
+    "AboutRow": {
+      "components": [
+        {
+          "disabled": true,
+          "label": "Website (not yet)",
+          "style": 5,
+          "type": 2,
+          "url": "https://janjyfy-bot.tech"
+        },
+        {
+          "disabled": false,
+          "label": "INVITE",
+          "style": 5,
+          "type": 2,
+          "url": "https://discord.com/api/oauth2/authorize?client_id=995397263130112081&permissions=8&scope=bot%20applications.commands"
+        }
+      ],
+      "type": 1
+    },
+    "Active": {
+      "components": [
+        {
+          "custom_id": "backwards",
+          "style": 1,
+          "label": "←",
+          "disabled": "{BVALUE}",
+          "type": 2
+        },
+        {
+          "custom_id": "forward",
+          "style": 1,
+          "label": "→",
+          "disabled": "{AVALUE}",
+          "type": 2
+        }
+      ],
+      "type": 1
+    },
+    "HelpEmbed": {
+      "type": "rich",
+      "title": "Commands",
+      "fields": [
+        {
+          "name": "<:muted:893163035705892954>  Mute Commands",
+          "value": "```/mute [user] [?reason] \n/tempmute [user] [time] [?reason] \n/unmute [user]```",
+          "inline": true
+        },
+        {
+          "name": "🤡  Ban Commands",
+          "value": "```/ban [user] [?reason] \n/tempban [user] [time] [?reason] \n/unban [user] ```",
+          "inline": true
+        },
+        {
+          "name": "<:TEAM_USER:876933196833488896>  Moderation Commands",
+          "value": "```/info [?user] \n/kick [user] \n/purge [amount] \n/pinfo [?user] ```",
+          "inline": true
+        },
+        {
+          "name": "<:client:893110587138142259>  Other Commands",
+          "value": "```/about [?] \n/ping [?]```",
+          "inline": true
+        }
+      ],
+      "color": 14140103
+    },
+    "HelpMutes": {
+      "title": "Mute Commands",
+      "type": "rich",
+      "color": 14140103,
+      "fields": [
+        {
+          "name": "/mute [user] [?reason]",
+          "value": "```/mute @JanjyTapYT#0001 spamming```",
+          "inline": true
+        },
+        {
+          "name": "/tempmute [user] [time] [?reason]",
+          "value": "```/tempmute @JanjyTapYT#0001 1h spamming```",
+          "inline": true
+        },
+        {
+          "name": "/unmute [user]",
+          "value": "```/unmute @JanjyTapYT#0001```",
+          "inline": true
+        }
+      ]
+    },
+    "HelpBans": {
+      "title": "Ban Commands",
+      "type": "rich",
+      "color": 14140103,
+      "fields": [
+        {
+          "name": "/ban [user] [?reason]",
+          "value": "```/ban @JanjyTapYT#0001 not following rules```",
+          "inline": true
+        },
+        {
+          "name": "/tempban [user] [time] [?reason]",
+          "value": "```/tempban @JanjyTapYT#0001 1d not following rules```",
+          "inline": true
+        },
+        {
+          "name": "/unban [user]",
+          "value": "```/unban @JanjyTapYT#0001```",
+          "inline": true
+        }
+      ]
+    },
+    "HelpModeration": {
+      "title": "Moderation Commands",
+      "type": "rich",
+      "color": 14140103,
+      "fields": [
+        {
+          "name": "/info [?user]",
+          "value": "```/info @JanjyTapYT#0001```",
+          "inline": true
+        },
+        {
+          "name": "/kick [user] [?reason]",
+          "value": "```/kick @JanjyTapYT#0001 not active```",
+          "inline": true
+        },
+        {
+          "name": "/pinfo [?user]",
+          "value": "```/pinfo @JanjyTapYT#0001```",
+          "inline": true
+        },
+        {
+          "name": "/purge [ammount]",
+          "value": "```/purge 100```",
+          "inline": true
+        }
+      ]
+    },
+    "HelpOther": {
+      "title": "Other Commands",
+      "type": "rich",
+      "color": 14140103,
+      "fields": [
+        {
+          "name": "/ping",
+          "value": "```/ping```",
+          "inline": true
+        },
+        {
+          "name": "/about",
+          "value": "```/about```",
+          "inline": true
+        }
+      ]
+    },
+    "MissingPermission": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "You need {PERMISSION} to {PUNISH}.",
+      "color": 14166570
+    },
+    "NotFound": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "{USER} was not found in this server.",
+      "color": 14166570
+    },
+    "LackingPermission": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "I do not have enough permissions to {PUNISH} {USER}.",
+      "color": 14166570
+    },
+    "AlreadyPunished": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "{USER} Is already {PUNISHED}.",
+      "color": 14166570
+    },
+    "Certain": {
+      "title": "🤔  {TITLE}",
+      "type": "rich",
+      "description": "Are you sure you want to {PUNISH} {USER}?",
+      "color": 3092790
+    },
+    "OperationStopped": {
+      "type": "rich",
+      "title": "❌  Operation Stopped",
+      "description": "{USER} was not {PUNISHED}.",
+      "color": 14166570
+    },
+    "UserPunished": {
+      "type": "rich",
+      "title": "🤡  You have been {PUNISHED}",
+      "description": "{REASON}",
+      "color": 14166570
+    },
+    "MemberPunished": {
+      "title": "✅  Member {PUNISH}",
+      "type": "rich",
+      "description": "{USER} has been {PUNISHED}.",
+      "color": 776785
+    },
+    "WrongFormat": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "The length should be in s|m|h|d format",
+      "color": 14166570
+    },
+    "CertainTemp": {
+      "title": "🤔  {TITLE}",
+      "type": "rich",
+      "description": "Are you sure you want to {PUNISH} {USER} for {TIME}?",
+      "color": 3092790
+    },
+    "UserPunishedTemp": {
+      "type": "rich",
+      "title": "🤡  You have been {PUNISHED} for {TIME}",
+      "description": "{REASON}",
+      "color": 14166570
+    },
+    "MemberPunishedTemp": {
+      "title": "✅  Member {PUNISH}",
+      "type": "rich",
+      "description": "{USER} has been {PUNISHED} for {TIME}.",
+      "color": 776785
+    },
+    "CantMakeMuted": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "I am missing the ``MANAGE_ROLES`` permission.",
+      "color": 14166570
+    },
+    "CantManage": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "I cannot manage the muted role.",
+      "color": 14166570
+    },
+    "NoRole": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "There is no muted role.",
+      "color": 14166570
+    },
+    "NotPunished": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "{USER} Is not {PUNISHED}.",
+      "color": 14166570
+    },
+    "PageError": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "There are not {NUM} pages.",
+      "color": 14166570
+    },
+    "CommandError": {
+      "type": "rich",
+      "title": "❌  ERROR",
+      "description": "I ran into a problem while executing this command!",
+      "color": 14166570
+    },
+    "ChannelPurged": {
+      "title": "✅  Deletion of messages successful",
+      "type": "rich",
+      "description": "Total amount of messages purged: {AMOUNT}",
+      "color": 776785
+    },
+    "PurgeError": {
+      "title": "❌  You cannot purge {AMOUNT} messages",
+      "type": "rich",
+      "description": "The max amount of messages you can purge is 100 and the min is 1.",
+      "color": 14166570
+    }
+  }

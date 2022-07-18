@@ -1,41 +1,22 @@
-const Discord = require("discord.js");
-const client = new Discord.Client({ intents: 32767 });
-const fs = require("fs");
+const {Client, Collection, Intents } = require("discord.js");
+global.mongoose = require('mongoose');
+const client = new Client({ intents: 32767 });
+const { readdirSync, fs } = require('fs')
 const config = require("./src/config/janjy.config.js");
 client.config = config;
 
 
 /* Load all events (discord based) */
+const handlersFiles = readdirSync('./src/handlers');
+for (const file of handlersFiles) {
+  client[file.split('.')[0]] = new Collection()
+  require(`./src/handlers/${file}`)(client)
+}
 
-
-fs.readdir("./src/events/", (_err, files) => {
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    const event = require(`./src/events/${file}`);
-    let eventName = file.split(".")[0];
-    console.log(`[Event]   ✅  Loaded: ${eventName}`);
-    client.on(eventName, event.bind(null, client));
-    delete require.cache[require.resolve(`./src/events/${file}`)];
-  });
-});
-
-// let interactions be a new collection ( slash commands  )
-client.interactions = new Discord.Collection();
-// creating an empty array for registering slash commands
-client.register_arr = []
-/* Load all slash commands */
-fs.readdir("./src/slash_commands/", (_err, files) => {
-  files.forEach(file => {
-    if (!file.endsWith(".js")) return;
-    let props = require(`./src/slash_commands/${file}`);
-    let commandName = file.split(".")[0];
-    client.interactions.set(commandName, {
-      name: commandName,
-      ...props
-    });
-    client.register_arr.push(props)
-  });
-});
+// Connect to the MongoDB
+mongoose.connect(config.mongo).then(() => {
+  console.log("[!]:  ✅  Mongoose successfully connected.");
+}).catch(err => console.log("[!]:  ❌  An error occurred while connecting mongoose.", err));
 
 // Login through the client
 client.login(config.token);

@@ -1,16 +1,16 @@
 const Discord = require('discord.js');
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const config = require('../config/janjy.config.js');
+const config = require(`${process.cwd()}/src/config/janjy.config.js`);
 const moment = require("moment");
 require("moment-duration-format");
 
 module.exports = {
     name: 'uptime',
     description: 'Check our uptime! 🚀',
-    run: async (client, interaction) => {
-      const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
+    async execute(interaction, bot) {
+      const duration = moment.duration(bot.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
    const date = new Date();
-   const timestamp = date.getTime() - Math.floor(client.uptime);
+   const timestamp = date.getTime() - Math.floor(bot.uptime);
   let uptime = new Discord.MessageEmbed()
     .setTitle("<:pingms:962312529005137990> Client's Uptime")
     .setColor('#000000')	
