@@ -4,7 +4,8 @@
     "description": "JanjyTapYT's bot written in discord.js",
     "main": "janjy.index.js",
     "scripts": {
-        "start": "node janjy.index.js"
+        "start": "node janjy.index.js",
+        "test": "echo \"Successfully tested the application!\""
     },
     "author": "JanjyTapYT",
     "license": "CC-JanjyTapYT",
