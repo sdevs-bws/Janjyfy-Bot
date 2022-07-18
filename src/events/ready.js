@@ -1,4 +1,5 @@
-const register = require('../utils/stoneclane.slashsync');
+const janjyConfig = require('../config/janjy.config')
+const register = require('../utils/janjy.slashsync');
 module.exports = async (client) => {
   await register(client, client.register_arr.map((command) => ({
     name: command.name,
@@ -12,10 +13,10 @@ module.exports = async (client) => {
   console.log(`[ / | Slash Command ] - ✅ Loaded all slash commands!`)
   let invite = `https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=applications.commands%20bot`;
   console.log(`[STATUS] ${client.user.tag} is now online!\n[INFO] Bot by JanjyTapYT https://www.youtube.com/c/JanjyTapYT\n[Invite Link] ${invite}`);
-  const activities = [`Stoneclane Development | sdevs.org`];
+  const activities = [janjyConfig.statuses.Status1.name, janjyConfig.statuses.Status2.name, janjyConfig.statuses.Status3.name, janjyConfig.statuses.Status4.name];
   setInterval(() => {
     let activity = activities[Math.floor(Math.random() * activities.length)];
-    client.user.setActivity(activity, { type: "PLAYING" });
+    client.user.setActivity(activity, { type: janjyConfig.statuses.type });
   }, 20000);
 
 };

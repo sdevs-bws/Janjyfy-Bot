@@ -1,17 +1,18 @@
 {
-    "name": "Stoneclane Development Bot",
+    "name": "Janjyfy Bot",
     "version": "8.1.1",
-    "description": "Stoneclane Development's bot written in discord.js",
-    "main": "stoneclane.index.js",
+    "description": "JanjyTapYT's bot written in discord.js",
+    "main": "janjy.index.js",
     "scripts": {
-        "start": "node stoneclane.index.js"
+        "start": "node janjy.index.js"
     },
     "author": "JanjyTapYT",
     "license": "CC-JanjyTapYT",
     "keywords": [
         "discord",
-        "stoneclane",
-        "stoneclane_development",
+        "janjy",
+        "janjytapyt",
+        "JanjyTapYT",
         "bot",
         "discord.js",
         "discordjs"

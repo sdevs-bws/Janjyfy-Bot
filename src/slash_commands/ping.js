@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js")
-const config = require("../config/stoneclane.config.js")
+const config = require("../config/janjy.config.js")
 
 module.exports = {
     name: 'ping',

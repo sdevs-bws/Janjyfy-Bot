@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const config = require('../config/stoneclane.config.js');
+const config = require('../config/janjy.config.js');
 const moment = require("moment");
 require("moment-duration-format");
 
