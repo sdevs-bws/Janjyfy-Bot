@@ -1,5 +1,5 @@
 {
-    "name": "Janjyfy Bot",
+    "name": "Janjyfy-Bot",
     "version": "8.1.1",
     "description": "JanjyTapYT's bot written in discord.js",
     "main": "janjy.index.js",
