@@ -9,7 +9,6 @@ module.exports = {
     footer: "Bot made with ❤️ and ☕ by JanjyTapYT & Stoneclane Development",
 
     statuses: {
-
         status1: {
             name: `Made with ❤️ by JanjyTapYT & Stoneclane Development`,
             type: "PLAYING",
