@@ -12,6 +12,7 @@ module.exports = {
     let num = 0
     const activities = [
       { name: config.statuses.status1.name, type: config.statuses.status1.type },
+      { name: config.statuses.status2.name, type: config.statuses.status2.type },
     ];
 
     setInterval(function () {

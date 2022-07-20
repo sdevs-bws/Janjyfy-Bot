@@ -11,7 +11,8 @@ module.exports = {
       await m.delete()
       const embed = new MessageEmbed()
         .setColor(776785)
-        .setDescription(`<:pingms:962312529005137990>  **CLIENT PING:** ${ms(bot.ws.ping)}\n\n<:pingms:962312529005137990>  **MY PING:** ${ms(Date.now() - ping)}`);
+        .setDescription(`<:pingms:962312529005137990>  **CLIENT PING:** ${ms(bot.ws.ping)}\n\n<:pingms:962312529005137990>  **MY PING:** ${ms(Date.now() - ping)}`)
+        .setFooter({ text: config.footer});
 
       interaction.reply({ content: null, embeds: [embed] });
     })

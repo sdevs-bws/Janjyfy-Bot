@@ -1,17 +1,5 @@
 [
     {
-       "name": "pinfo",
-       "description": "Shows information about the user",
-       "options": [
-          {
-             "type": "USER",
-             "name": "user",
-             "description": "Specify a user",
-             "required": false
-          }
-       ]
-    },
-    {
        "name": "ping",
        "description": "shows current latency",
        "options": []
