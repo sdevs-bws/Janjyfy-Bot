@@ -12,7 +12,7 @@
 
 ## 🖥️ Hosting
 [![Run on Repl.it](https://repl.it/badge/github/Stoneclane-Development/Janjyfy-Bot)](https://repl.it/github/Stoneclane-Development/Janjyfy-Bot)<br>
-[![Remix on Glitch](https://cdn.glitch.com/2703baf2-b643-4da7-ab91-7ee2a2d00b5b%2Fremix-button.svg)](https://glitch.com/edit/#!/import/github/Stoneclane-Development/Janjyfy-Bot)
+[![Remix on Glitch](https://cdn.glitch.global/d349a78e-a2a2-421c-bf5d-209257eb40f8/InShot_20220728_220541926.jpg?v=1659035236368)](https://glitch.com/edit/#!/import/github/Stoneclane-Development/Janjyfy-Bot)
 
 ## Getting Started
 
