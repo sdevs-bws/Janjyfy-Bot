@@ -23,7 +23,7 @@ npm install && npm start dev
 ```
 ## 🛠 Production Server
 ```bash
-npm install && npm run build && npm run start
+npm install && npm run start
 ```
 
 ## Learn More
