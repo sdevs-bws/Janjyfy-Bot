@@ -1,6 +1,6 @@
 {
   "name": "janjyfy-bot",
-  "version": "9.1.1-patch.1",
+  "version": "2.1.1-patch.1",
   "description": "JanjyTapYT's moderation bot written in discord.js",
   "main": "janjy.index.js",
   "scripts": {
