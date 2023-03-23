@@ -3,7 +3,7 @@
 <br><br>
 [![Discord](https://img.shields.io/discord/849220946484789278?color=%2334D058&logo=discord&label=Discord&style=flat-square&logoColor=fff)](https://discord.gg/M7kaJDZtyY)
 [![Discord.js](https://img.shields.io/badge/Discord.js-v13-%2334d058?style=flat-square&logo=npm&logoColor=fff)](https://www.npmjs.com/package/discord.js)
-[![CodeQL Checks](https://img.shields.io/github/workflow/status/Stoneclane-Development/Janjyfy-Bot/CodeQL%20Checks/master?style=flat-square&label=CodeQL&logo=github&color=%2334D058)](https://discord.gg/M7kaJDZtyY)
+[![CodeQL Checks](https://img.shields.io/github/workflow/status/Stoneclane-Development/Janjyfy-Bot/node.js.yml/master?style=flat-square&label=CodeQL&logo=github&color=%2334D058)](https://discord.gg/M7kaJDZtyY)
 [![GitHub License](https://img.shields.io/github/license/Stoneclane-Development/Janjyfy-Bot?style=flat-square&logo=github&label=License&color=%2334D058)](https://discord.gg/M7kaJDZtyY)
 [![Version](https://img.shields.io/github/package-json/v/Stoneclane-Development/Janjyfy-Bot?style=flat-square&logo=github&label=Version&color=%2334D058)](https://discord.gg/M7kaJDZtyY)
 ---
