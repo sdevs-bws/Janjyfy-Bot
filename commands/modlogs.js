@@ -38,23 +38,23 @@ module.exports = {
 
         if (command === "enable") {
             if (data.Channel === channel.id)
-                return interaction.reply(`❌ | This is already the \`\`modlogs\`\` channel`);
+                return interaction.reply({ content: `❌ | Modlogs system is \`\`already\`\` enabled in ${channel}`, ephemeral: true });
                 
 
             data.Channel = channel.id;
             data.Enabled = true;
             data.save();
 
-            interaction.reply(`✅ | Logs have been \`\`set\`\` to ${channel}`);
+            interaction.reply({ content: `✅ | Modlogs system \`\`has\`\` been enabled in ${channel}`, ephemeral: true });
         } else if (command === "disable") {
             if (data.Enabled !== true)
-                return interaction.reply(`❌ | Modlogs system is \`\`already\`\` disabled`);
+                return interaction.reply({ content: `❌ | Modlogs system is \`\`already\`\` disabled`, ephemeral: true });
 
             data.Channel = null;
             data.Enabled = false;
             data.save();
 
-            interaction.reply(`✅ | Modlogs system \`\`has\`\` been disabled`);
+            interaction.reply({ content: `✅ | Modlogs system \`\`has\`\` been disabled`, ephemeral: true });
         }
     },
 };

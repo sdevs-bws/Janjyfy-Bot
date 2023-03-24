@@ -1,4 +1,4 @@
-const discord = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const modlogModel = require(`${process.cwd()}/database/models/modlog.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 
@@ -35,24 +35,24 @@ module.exports = {
         const member = guild.members.cache.get(user.id);
 
         if (!member) {
-            interaction.reply("❌ | I cant \`\`find\`\` that user!");
+            interaction.reply({ content: "❌ | I could not \`\`find\`\` that user!", ephemeral: true });
             return;
         }
 
         if (user.roles.cache.has(role.id)) {
-            interaction.reply("❌ | That user already has that role!");
+            interaction.reply({ content: "❌ | That user already has that role!", ephemeral: true });
             return;
         }
 
         if (!role) {
-            interaction.reply("❌ | I cant \`\`find\`\` that role!");
+            interaction.reply({ content: "❌ | I could not \`\`find\`\` that role!", ephemeral: true });
             return;
         }
 
         await user.roles.add(role);
-        interaction.reply(`✅ | I have given the role called ${role} to \`\`${member.user.tag}\`\``);
+        interaction.reply({ content: `✅ | \`\`${member.user.tag}\`\` was been \`\`given\`\` the role: ${role} for reason: \`\`${reason}\`\``, ephemeral: true });
 
-        const mog_log_embed = new discord.MessageEmbed()
+        const mog_log_embed = new EmbedBuilder()
         .setTitle("Give-Role")
         .setColor(colors.main)
         .setDescription(`\`\`${member.user.tag}\`\` was been \`\`given\`\` the role: ${role} for reason: \`\`${reason}\`\``)

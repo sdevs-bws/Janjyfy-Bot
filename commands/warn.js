@@ -1,4 +1,4 @@
-const discord = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const config = require(`${process.cwd()}/janjy.config.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 const modlogModel = require(`${process.cwd()}/database/models/modlog.js`);
@@ -23,47 +23,47 @@ module.exports = {
     ],
 
     run: async (client, interaction) => {
-         const user = interaction.options["_hoistedOptions"].find(_o => _o.type == "USER").user;
+         const user = interaction.options.getUser("user");
          const reason = interaction.options.getString("reason");
          const member = interaction.guild.members.cache.get(user.id);
          const guild = interaction.guild;
 
          if (!user) {
-            interaction.reply(`❌ | I cant \`\`find\`\` the user you are trying to warn.`);
+            interaction.reply({ content: "❌ | You have to \`\`provide\`\` a user!", ephemeral: true });
             return;
          }
          if (!reason) {
-            interaction.reply(`❌ | You must provide a \`\`reason\`\` for the warning.`);
+            interaction.reply({ content: "❌ | You have to \`\`provide\`\` a reason!", ephemeral: true });
             return;
          }
          if (user.id === interaction.user.id) {
-            interaction.reply(`❌ | You cant \`\`warn\`\` yourself.`);
+            interaction.reply({ content: "❌ | You cant \`\`warn\`\` yourself.", ephemeral: true });
             return;
          }
          if (user.id === client.user.id) {
-            interaction.reply(`❌ | I cant \`\`warn\`\` myselft.`);
+            interaction.reply({ content: "❌ | You cant \`\`warn\`\` me.", ephemeral: true });
             return;
          }
          if (user.id === guild.ownerID) {
-            interaction.reply(`❌ | You cant \`\`warn\`\` the server owner.`);
+            interaction.reply({ content: "❌ | You cant \`\`warn\`\` the server owner.", ephemeral: true });
             return;
          }
 
-         const components = new discord.MessageActionRow()
+         const components = new ActionRowBuilder()
          .addComponents(
-             new discord.MessageButton()
+             new ButtonBuilder()
              .setCustomId('secondary')
              .setLabel(`Warned in ${guild.name}`)
-             .setStyle('SECONDARY')
+             .setStyle('Secondary')
              .setDisabled(true)
          )
-         const warn = new discord.MessageEmbed()
+         const warn = new EmbedBuilder()
          .setColor(colors.main)
          .setTitle(`🛑 | ${user.tag} has been warned`)
          .setDescription(`\`\`${user.tag}\`\` has been \`\`warned\`\` by \`\`${interaction.user.tag}\`\` for reason: \`\`${reason}\`\``)
          .setFooter({ text: config.footer });
 
-         const warn2 = new discord.MessageEmbed()
+         const warn2 = new EmbedBuilder()
          .setColor(colors.main)
          .setTitle(`🛑 | You have been warned`)
          .setDescription(`\`\`${user.tag}\`\` has been \`\`warned\`\` by \`\`${interaction.user.tag}\`\` for reason: \`\`${reason}\`\``)
@@ -77,10 +77,10 @@ module.exports = {
             timestamp: Date.now(),
         }).save();
          interaction.channel.send({ embeds: [warn] });
-         interaction.reply(`✅ | \`\`${user.tag}\`\` has been warned.`);
-         user.send({ embeds: [warn2], components: [components] });
+         interaction.reply({ content: `✅ | \`\`${user.tag}\`\` has been \`\`warned\`\` for reason: \`\`${reason}\`\``, ephemeral: true });
+         user.send({ embeds: [warn2], components: [components] }).catch(() => {});
 
-         const mog_log_embed = new discord.MessageEmbed()
+         const mog_log_embed = new EmbedBuilder()
         .setTitle("Warn")
         .setColor(colors.main)
         .setDescription(`\`\`${member.user.tag}\`\` has been \`\`warned\`\` for reason: \`\`${reason}\`\``)

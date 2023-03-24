@@ -1,8 +1,6 @@
-const discord = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const config = require(`${process.cwd()}/janjy.config.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
-const emojis = require(`${process.cwd()}/janjy.emojis.js`);
-const modlogModel = require(`${process.cwd()}/database/models/modlog.js`);
 const moment = require("moment");
 require("moment-duration-format");
 
@@ -25,7 +23,7 @@ module.exports = {
     ],
 
     run: async (client, interaction) => {
-        const user = interaction.options["_hoistedOptions"].find(_o => _o.type == "USER").user;
+        const user = interaction.options.getUser("user");
         const reason = interaction.options.getString("reason");
         const member = interaction.guild.members.cache.get(user.id);
         const requestedBy = interaction.user;
@@ -33,52 +31,43 @@ module.exports = {
         const date = new Date();
         const timestamp = date.getTime() - Math.floor(member.user.createdAt.getTime() / 1000) * 1000;
 
-        const embed = new discord.MessageEmbed()
+        const embed = new EmbedBuilder()
         .setColor(colors.main)
         .setTitle(`💫 ${member.user.tag}'s Informations`)
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-        .addField(`${emojis.id} ID`, member.id, true)
-        .addField(`${emojis.username} Username`, member.user.tag, true)
-        .addField(`${emojis.nickname} Nickname`, member.nickname ? member.nickname : "No Nickname!", true)
-        .addField(`${emojis.account_created} Account Created`, `<t:${moment(timestamp).unix()}>`, true)
-        .addField(`${emojis.status} Status`, member.presence.status, true)
-        .addField(`${emojis.bot} Bot`, member.user.bot ? "Yes" : "No", true)
-        .setFooter(config.footer)
+        .addFields([
+            { name: `<a:lop:939967931348037653> ID`, value: `\`\`\`yaml\n${member.user.id}\`\`\``, inline: false },
+            { name: `<a:768934598583123979:939881115806748682> Username`, value: `\`\`\`yaml\n${member.user.username}\`\`\``, inline: false },
+            { name: `<a:768934598583123979:939881115806748682> Nickname`, value: `\`\`\`yaml\n${member.nickname ? member.nickname : "None"}\`\`\``, inline: false },
+            { name: `<a:768934598583123979:939881115806748682> Account Created`, value: `\`\`\`yaml\n${moment(member.user.createdAt).format("DD/MM/YYYY")}\`\`\``, inline: false },
+            { name: `<a:768934598583123979:939881115806748682> Status`, value: `\`\`\`yaml\n${member ? member.presence.status.replace("dnd", "Do Not Disturb").replace("idle", "Idle").replace("online", "Online").replace("offline", "Offline") : "Offline"}\`\`\``, inline: false },
+            { name: `<a:768934598583123979:939881115806748682> Bot`, value: `\`\`\`yaml\n${member.user.bot ? "Yes" : "No"}\`\`\``, inline: false },
+        ])
+        .setFooter({ text: config.footer })
         .setTimestamp();
 
-        const components = new discord.MessageActionRow()
+        const components = new ActionRowBuilder()
          .addComponents(
-             new discord.MessageButton()
+             new ButtonBuilder()
              .setCustomId('secondary')
              .setLabel(`Message sent from ${guild.name}`)
-             .setStyle('SECONDARY')
+             .setStyle('Secondary')
              .setDisabled(true)
          )
 
         if (!user) {
-            interaction.reply(`❌ | I cant \`\`find\`\` that user!`);
+            interaction.reply({ content: "❌ | You have to \`\`provide\`\` a user!", ephemeral: true });
             return;
         }
         if (!reason) {
-            interaction.reply(`❌ | You have to \`\`provide\`\` a reason!`);
+            interaction.reply({ content: "❌ | You have to \`\`provide\`\` a reason!", ephemeral: true });
             return;
         }
 
-        requestedBy.send({ embeds: [embed], components: [components] });
-        interaction.reply(`✅ | ${requestedBy} I have \`\`sent\`\` you a \`\`DM\`\` with all the \`\`informations\`\` about \`\`${member.user.tag}\`\`!`);
+        requestedBy.send({ embeds: [embed], components: [components] }).catch(() => {
+            interaction.reply({ content: "❌ | I could not \`\`send\`\` a message to you!", ephemeral: true });
+        });
 
-        const mog_log_embed = new discord.MessageEmbed()
-        .setTitle("Userinfo")
-        .setColor(colors.main)
-        .setDescription(`\`\`${member.user.tag}\`\` has been requested the user informations of \`\`${member.user.tag}\`\` with Reason: \`\`${reason}\`\``)
-        .setFooter({ text: `Requested Informations By: ${interaction.user.tag}` });
-
-    const modlog = await modlogModel.findOne({ where: { Guild: interaction.guild.id }})
-    if (modlog.Enabled == true) {
-        interaction.guild.channels.cache.get(modlog.Channel).send({ embeds: [mog_log_embed] });
-    }
-    if (modlog.Enabled == false) {
-        return;
-    }
+        interaction.reply({ content: `✅ | I have sent you a message with the user's info!`, ephemeral: true });
     }
 };

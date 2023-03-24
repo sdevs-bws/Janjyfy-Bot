@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const config = require(`${process.cwd()}/janjy.config.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 
@@ -8,21 +8,20 @@ module.exports = {
     options: [],
     run: async (client, interaction) => {
 
-      const components = new MessageActionRow()
+      const components = new ActionRowBuilder()
       .addComponents(
-        new MessageButton()
+        new ButtonBuilder()
               .setLabel('Support Server')
-              .setEmoji("<a:supportsrv:999736847607537805>")
               .setURL(`${config.supportDiscord}`)
-              .setStyle('LINK'),
+              .setStyle('Link'),
       )
 
-       const supportEmbed = new MessageEmbed()
+       const supportEmbed = new EmbedBuilder()
         .setTitle('Hey, you want to join our Support Server?')
         //.setAuthor({ text: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
         .setColor(colors.main)
         .setDescription(`**You can join our support server by pressing the** \`Support Server\` button below.`)
-        .setFooter(config.footer)
+        .setFooter({ text: config.footer })
         
             await interaction.reply({
               embeds: [ supportEmbed ],

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const ms = require("ms");
 const config = require(`${process.cwd()}/janjy.config.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
@@ -9,14 +9,11 @@ module.exports = {
   run: async (client, interaction) => {
     let ping = Date.now()
 
-    interaction.channel.send('Pinging..!').then(async m => {
-      await m.delete()
-      const embed = new MessageEmbed()
+    interaction.reply({ embeds: [
+      new EmbedBuilder()
         .setColor(colors.main)
-        .setDescription(`<:pingms:962312529005137990>  **CLIENT PING:** ${ms(client.ws.ping)}\n\n<:pingms:962312529005137990>  **MY PING:** ${ms(Date.now() - ping)}`)
-        .setFooter({ text: config.footer });
-
-      interaction.reply({ content: null, embeds: [embed] });
-    })
+        .setDescription(`<:ping:939881032260411392>  **CLIENT PING:** ${ms(client.ws.ping)}\n\n<:ping:939881032260411392>  **MY PING:** ${ms(Date.now() - ping)}`)
+        .setFooter({ text: config.footer })
+    ] });
   },
 };

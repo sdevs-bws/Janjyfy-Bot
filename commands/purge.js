@@ -1,6 +1,5 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const colors = require(`${process.cwd()}/janjy.colors.js`);
-const modlogModel = require(`${process.cwd()}/database/models/modlog.js`);
 
 module.exports = {
     name: "purge",
@@ -36,17 +35,18 @@ module.exports = {
         const channel = interaction.options.getChannel("channel") || interaction.channel;
         member = interaction.options.getMember("target");
         amount = interaction.options.getInteger("amount");
-        reason =
-            interaction.options.getString("reason") || "`No Reason Provided`";
+        reason = interaction.options.getString("reason") || "`No Reason Provided`";
 
         if (amount < 0 || amount > 100)
-            return interaction.followUp({
-                content: `❌ | You can only delete 100 messages at once`,
+            return interaction.reply({
+                content: `❌ | Please select a number between 1 and 100`,
+                ephemeral: true
             });
 
-        if (!channel.isText())
-            return interaction.followUp({
+        if (!channel.isTextBased())
+            return interaction.reply({
                 content: `❌ | Please select a text channel`,
+                ephemeral: true
             });
 
         let messages;
@@ -59,18 +59,19 @@ module.exports = {
         } else messages = amount;
 
         if (messages.size === 0) {
-            return interaction.followup({
+            return interaction.reply({
                 content: `❌ | Unable to find any messages from ${member}`,
+                ephemeral: true
             });
         } else {
             await channel.bulkDelete(messages, true).then((messages) => {
-                const embed = new MessageEmbed()
-                    .setDescription(
-                        `✅ | Successfully deleted **${messages.size}** message(s).`
-                    )
-                    .addField("Channel", `${channel}`, true)
-                    .addField("Message Count", `\`${messages.size}\``, true)
-                    .addField("Reason", `${reason}`, true)
+                const embed = new EmbedBuilder()
+                    .setDescription(`✅ | Successfully deleted **${messages.size}** message(s).`)
+                    .addFields([
+                        { name: "Channel", value: `${channel}`, inline: false },
+                        { name: "Message Count", value: `\`${messages.size}\``, inline: false },
+                        { name: "Reason", value: `${reason}`, inline: false }
+                    ])
                     .setTimestamp()
                     .setColor(colors.green);
 
@@ -89,11 +90,9 @@ module.exports = {
                             inline: true,
                         });
                 }
-                interaction
-                    .editReply({
+                interaction.editReply({
                         embeds: [embed],
-                    })
-                    .catch(() => {});
+                    }) .catch(() => {});
             });
         }
     }

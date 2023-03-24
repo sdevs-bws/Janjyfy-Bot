@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const modlogModel = require(`${process.cwd()}/database/models/modlog.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 
@@ -22,33 +22,34 @@ module.exports = {
 
     run: async (client, interaction) => {
     
-        const user = interaction.options["_hoistedOptions"].find(_o => _o.type == "USER").user;;
+        const user = interaction.options.getUser("user");
         const reason = interaction.options.getString("reason");
         const guild = client.guilds.cache.get(interaction.guild.id);
         const member = guild.members.cache.get(user.id);
         const muteRole = guild.roles.cache.find(role => role.name === "Muted");
 
         if (!muteRole) {
-            interaction.reply(`❌ | I could not find a role called \`\`Muted\`\` so please create a role called \`\`Muted\`\` and try again.`)
-            return;
+            interaction.reply({ content: "❌ | I could not find a role called \`\`Muted\`\`! Create one!", ephemeral: true });
         }
         if (!member) {
-            interaction.reply("❌ | Cant find that user!")
+            interaction.reply({ content: "❌ | I could not \`\`find\`\` that user!", ephemeral: true });
             return;
         }
         if (!reason) {
-            interaction.reply("❌ | You must provide a reason for the mute!")
+            interaction.reply({ content: "❌ | Please provide a reason for muting the user!", ephemeral: true });
             return;
         }
+
         if (member.roles.cache.has(muteRole.id)) {
-            interaction.reply("❌ | That user is already muted!")
+            interaction.reply({ content: "❌ | That user is already \`\`muted\`\`!", ephemeral: true });
             return;
         }
+
         member.roles.add(muteRole.id).then(() => {
-            interaction.reply(`✅ | Successfully muted \`\`${user.tag}\`\` for Reason: \`\`${reason}\`\``);
+            interaction.reply({ content: `✅ | \`\`${member.user.tag}\`\` has been \`\`muted\`\` for reason: \`\`${reason}\`\``, ephemeral: true });
         })
 
-        const mog_log_embed = new MessageEmbed()
+        const mog_log_embed = new EmbedBuilder()
         .setTitle("Mute")
         .setColor(colors.main)
         .setDescription(`\`\`${member.user.tag}\`\` has been \`\`muted\`\` on the server for reason: \`\`${reason}\`\``)
@@ -61,5 +62,5 @@ module.exports = {
     if (modlog.Enabled == false) {
         return;
     }
-    }
+}
 }

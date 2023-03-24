@@ -1,4 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const config = require(`${process.cwd()}/janjy.config.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 
@@ -8,16 +8,15 @@ module.exports = {
     options: [],
     run: async (client, interaction) => {
 
-      const components = new MessageActionRow()
+      const components = new ActionRowBuilder()
       .addComponents(
-        new MessageButton()
+        new ButtonBuilder()
            .setLabel('Invite Bot')
-           .setEmoji('<a:invitebot:999734955431165962>')
            .setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands`)
-           .setStyle('LINK')
+           .setStyle('Link')
       )
 
-        const inviteEmbed = new MessageEmbed()
+        const inviteEmbed = new EmbedBuilder()
         .setTitle('Hey, you want to invite our bot?')
         //.setAuthor({ text: interaction.guild.name, iconURL: interaction.guild.iconURL({ dynamic: true }) })
         .setColor(colors.main)

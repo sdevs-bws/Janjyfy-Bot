@@ -1,5 +1,5 @@
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, PermissionsBitField } = require("discord.js");
 const modlogModel = require(`${process.cwd()}/database/models/modlog.js`);
-const { MessageEmbed } = require('discord.js');
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 
 module.exports = {
@@ -25,24 +25,24 @@ module.exports = {
          const reason = interaction.options.getString("reason");
 
          if (!channel) {
-            interaction.reply(`❌ | I could not \`\`find\`\` that channel!`);
+            interaction.reply({ content: `❌ | You must provide a \`\`channel\`\` to unlock!`, ephemeral: true });
             return;
          }
          if (!reason) {
-            interaction.reply(`❌ | You must provide a \`\`reason\`\` for unlocking the channel!`);
+            interaction.reply({ content: `❌ | You must provide a \`\`reason\`\` to unlock this channel!`, ephemeral: true });
             return;
          }
-         if (channel.permissionsFor(interaction.guild.roles.everyone).has("SEND_MESSAGES")) {
-            interaction.reply(`❌ | This channel is \`\`already\`\` unlocked!`)
+         if (channel.permissionsFor(interaction.guild.roles.everyone).has(PermissionsBitField.Flags.SendMessages)) {
+            interaction.reply({ content: `❌ | That channel is already \`\`unlocked\`\`!`, ephemeral: true });
             return;
          }
 
          channel.permissionOverwrites.edit(interaction.guild.id, {
-            SEND_MESSAGES: true,
+            SendMessages: true,
         });
-         interaction.reply(`✅ | Successfully unlocked \`\`${channel.name}\`\` for Reason: \`\`${reason}\`\`!`);
+         interaction.reply({ content: `✅ | I have \`\`unlocked\`\` the channel: ${channel} for reason: \`\`${reason}\`\``, ephemeral: true });
 
-         const mog_log_embed = new MessageEmbed()
+         const mog_log_embed = new EmbedBuilder()
          .setTitle("Unlock Channel")
          .setColor(colors.main)
          .setDescription(`\`\`${interaction.user.tag}\`\` has \`\`unlocked\`\` the channel: \`\`${channel}\`\` for reason: \`\`${reason}\`\``)

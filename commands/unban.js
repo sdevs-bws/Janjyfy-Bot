@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const modlogModel = require(`${process.cwd()}/database/models/modlog.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 
@@ -24,18 +24,18 @@ module.exports = {
     const reason = interaction.options.getString("reason");
 
     if (!user) {
-        interaction.reply(`❌ | I could not \`\`find\`\` that user!`)
+        interaction.reply({ content: "❌ | You must provide a \`\`user\`\` to unban!", ephemeral: true });
         return;
     }
     if (!reason) {
-        interaction.reply(`❌ | You must provide a \`\`reason\`\` for the unban!`)
+        interaction.reply({ content: "❌ | You must provide a \`\`reason\`\` for the unban!", ephemeral: true });
         return;
     }
     
     await interaction.guild.members.unban(user, reason);
-    interaction.reply(`✅ | Successfully unbanned \`\`${user.tag}\`\` for Reason: \`\`${reason}\`\` from the Server!`);
+    interaction.reply({ content: `✅ | I have \`\`unbanned\`\` the user: \`\`${user}\`\` for reason: \`\`${reason}\`\``, ephemeral: true });
 
-    const mog_log_embed = new MessageEmbed()
+    const mog_log_embed = new EmbedBuilder()
         .setTitle("Unban")
         .setColor(colors.main)
         .setDescription(`\`\`${interaction.user.tag}\`\` has been \`\`unbanned\`\` from the server for reason: \`\`${reason}\`\``)

@@ -1,5 +1,4 @@
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
-//const Messages = require("discord-msg");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 const config = require(`${process.cwd()}/janjy.config.js`);
 
@@ -8,31 +7,32 @@ module.exports = {
     description: "Learn about bot commands.",
     options: [],
     run: async (client, interaction) => {
-      const _components = new MessageActionRow()
+      const _components = new ActionRowBuilder()
       .addComponents(
-        new MessageButton()
+        new ButtonBuilder()
         .setLabel('Support Server')
         .setEmoji("✅")
         .setURL(`${config.supportDiscord}`)
-        .setStyle('LINK'),
-        new MessageButton()
+        .setStyle('Link'),
+        new ButtonBuilder()
         .setLabel('Invite Bot')
         .setEmoji("❤️")
         .setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands`)
-        .setStyle('LINK')
+        .setStyle('Link')
       )
 
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
         .setTitle('Hey, if you need help type /help command')
         //.setAuthor(interaction.guild.name, interaction.guild.iconURL({ dynamic: true }))
         .setColor(colors.main)
-        .setDescription(`**<a:arrows:1012771355659341834> My Prefix:** \`${config.prefix}\``)
-        .addField(`<:Discord_Bots1:1012770508967776316> Bot Info:`, `>>> \`/botinfo\` : \`show the information about the bot\`\n\`/invite\` : \`give you the bot invite link\`\n\`/support\` : \`give you the bot support server\``)
-        .addField(`<:config_H4K:1012770512738463874> Config:`, `>>> \`/modlog enable\` : \`Enables the modlog system\`\n\`/modlog disable\` : \`disables the modlog system\``)
-        .addField(`<a:r_info:1012770515582193664> Informations:`, `>>> \`/userinfo\` : \`Gives you more detailed information about a user\``)
-        // yeah i know pretty long lines
-        .addField(`<:mod:1012770510800695398> Moderation:`, `>>> \`/ban\` : \`Bans a user from the system!\`\n\`/give-role\` : \`Gives a user a specific role\`\n\`/kick\` : \`Kicks a user from the server\`\n\`/lock\` : \`Locks a channel\`\n\`/mute\` : \`Mutes a user on the server\`\n\`/nickname\` : \`Changes the nickname of a user\`\n\`/purge\` : \`Purges a specific amount of messages in a channel\`\n\`/remove-role\` : \`Removes a role from a specific user\`\n\`/unban\` : \`Unbans a user from the server\`\n\`/unlock\` : \`Unlocks a locked channel on the server\`\n\`/unmute\` : \`Unmutes a user on the server\`\n\`/warn\` : \`Warn a specific user on the server\``)
+        .setDescription(`**<a:768934598583123979:939881115806748682> My Prefix:** \`/\``)
+        .addFields([
+          { name: `<a:IconBot:951665482245763193> Bot Info:`, value: `\`/botinfo\` : \`show the information about the bot\`\n\`/invite\` : \`give you the bot invite link\`\n\`/support\` : \`give you the bot support server\``, inline: false },
+          { name: `<a:settings_2:939814005067890739> Config:`, value: `\`/modlog enable\` : \`Enables the modlog system\`\n\`/modlog disable\` : \`disables the modlog system\``, inline: false },
+          { name: `<a:IconCreditCard:951665483118162001> Informations:`, value: `\`/userinfo\` : \`Gives you more detailed information about a user\``, inline: false },
+          { name: `<:moderator:939881268064165898> Moderation:`, value: `\`/ban\` : \`Bans a user from the system!\`\n\`/give-role\` : \`Gives a user a specific role\`\n\`/kick\` : \`Kicks a user from the server\`\n\`/lock\` : \`Locks a channel\`\n\`/mute\` : \`Mutes a user on the server\`\n\`/nickname\` : \`Change the nickname of a user\`\n\`/purge\` : \`Purge messages from a channel\`\n\`/unban\` : \`Unbans a user from the system!\`\n\`/unmute\` : \`Unmutes a user on the server\``, inline: false },
+        ])
         .setFooter({ text: config.footer });
 
               await interaction.reply({

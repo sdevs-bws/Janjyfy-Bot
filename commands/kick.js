@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const modlogModel = require(`${process.cwd()}/database/models/modlog.js`);
 const colors = require(`${process.cwd()}/janjy.colors.js`);
 
@@ -20,27 +20,27 @@ module.exports = {
     }
 ],
    run: async (client, interaction) => {
-    const user = interaction.options["_hoistedOptions"].find(_o => _o.type == "USER").user;
+    const user = interaction.options.getMember("user");
     const member = interaction.channel.guild.members.cache.get(user.id);
     const reason = interaction.options.getString("reason");
 
     if (!member) {
-        interaction.reply("❌ | I could not find that user!")
+        interaction.reply({ content: "❌ | I could not \`\`find\`\` that user!", ephemeral: true });
         return;
     }
     if (!reason) {
-        interaction.reply("❌ | You must provide a reason for the kick!")
+        interaction.reply({ content: "❌ | Please provide a reason for the kick!", ephemeral: true });
         return;
     }
     if (!member.kickable) {
-        interaction.reply("❌ | I cannot kick that user!")
+        interaction.reply({ content: "❌ | I cannot \`\`kick\`\` that user!", ephemeral: true });
         return;
     }
     
     await member.kick( reason );
-    interaction.reply(`✅ | Successfully kicked \`\`${member.user.tag}\`\` for Reason: \`\`${reason}\`\` from the Server!`);
+    interaction.reply({ content: `✅ | \`\`${member.user.tag}\`\` has been \`\`kicked\`\` from the server for reason: \`\`${reason}\`\``, ephemeral: true });
 
-    const mog_log_embed = new MessageEmbed()
+    const mog_log_embed = new EmbedBuilder()
         .setTitle("Kick")
         .setColor(colors.main)
         .setDescription(`\`\`${member.user.tag}\`\` has been \`\`kicked\`\` from the server for reason: \`\`${reason}\`\``)
