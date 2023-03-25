@@ -1,4 +1,4 @@
-# Janjyfy - Bot v3.0.0<br/>
+# Janjyfy - Bot v3.1.0<br/>
 
 <br><br>
 [![Discord](https://img.shields.io/discord/849220946484789278?color=%2334D058&logo=discord&label=Discord&style=flat-square&logoColor=fff)](https://discord.gg/M7kaJDZtyY)
