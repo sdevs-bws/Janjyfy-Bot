@@ -41,5 +41,5 @@ You can check out [the Discord.js GitHub repository](https://github.com/discordj
 ## 💫 Credits
 
 ```bash
-Developed with ❤️ by JanjyTapYT & Stoneclane Development
+Developed with ❤️ by JanjyTapYT & SDEVS
 ```
